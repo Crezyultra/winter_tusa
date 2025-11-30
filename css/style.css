@@ -220,7 +220,7 @@ body {
     margin: 0 auto;
 }
 
-/* Секция "О мероприятии" */
+/* О мероприятии */
 #about {
     background: #111;
 }
@@ -243,7 +243,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
 }
 
-/* Секция "Детали" */
+/* Детали */
 .details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -277,7 +277,7 @@ body {
     color: #00ffff;
 }
 
-/* Секция с таймером */
+/* таймер */
 #countdown {
     background: #111;
     text-align: center;
@@ -310,7 +310,7 @@ body {
     color: #ccc;
 }
 
-/* Секция с галереей - ИСПРАВЛЕННЫЙ КОД */
+/* Галерея */
 #gallery {
     background: #0a0a0a;
 }
@@ -321,16 +321,15 @@ body {
     gap: 20px;
 }
 
-/* Основные изменения здесь: */
 .gallery-item {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
     height: 250px;
     cursor: pointer;
-    display: block; /* Важно для ссылок! */
-    text-decoration: none; /* Убираем подчеркивание */
-    color: inherit; /* Наследуем цвет текста */
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .gallery-img {
@@ -338,7 +337,7 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
-    display: block; /* Убираем лишние отступы */
+    display: block;
 }
 
 .gallery-item:hover .gallery-img {
@@ -360,7 +359,7 @@ body {
     transform: translateY(0);
 }
 
-/* Секция контактов */
+/* Контакты */
 #contacts {
     background: #111;
     text-align: center;

@@ -1,189 +1,269 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Посвящение в Школу 21</title>
-
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300c8ff%22>21</text></svg>" type="image/svg+xml">
-    
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Подключение AOS для анимаций при скролле -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    
-    <!-- Подключение Font Awesome для иконок -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Подключение шрифтов -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Peer To Peer — Зимняя встреча 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Зимняя встреча от Peer To Peer — праздничное мероприятие 26 декабря 2025, вход с 18:00. Присоединяйтесь к волшебству зимней встречи!" />
+  <!-- Шрифты -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <!-- Стили -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Прелоадер -->
-    <div id="preloader">
-        <div class="loader-content">
-            <div class="loader-logo">Peer2Peer Presents</div>
-            <div class="loader-spinner"></div>
-        </div>
+  <!-- Фон снежинок (поверх всего) -->
+  <canvas id="snow-canvas" aria-hidden="true"></canvas>
+
+  <!-- Декоративные фигуры (олени, снеговики) -->
+  <div class="decorations" aria-hidden="true">
+    <div class="reindeer reindeer-1">🦌</div>
+    <div class="reindeer reindeer-2">🎄</div>
+    <div class="snowman snowman-1">⛄</div>
+  </div>
+
+  <!-- Прелоадер -->
+    <div class="preloader" id="preloader">
+      <div class="preloader-snowflake">
+        <img src="./assets/img/preloader.png" alt="Snowflake" class="preloader-snowflake-image">
+      </div>
+      <div class="preloader-text">Загружаем зимнюю сказку...</div>
     </div>
 
-    <!-- Кнопка управления звуком -->
-    <button id="sound-toggle">
-        <i class="fas fa-volume-mute"></i>
-    </button>
-
-    <!-- Главный экран -->
-    <section id="hero">
-        <video id="hero-video" autoplay muted loop>
-            <source src="assets/video/hero.mp4" type="video/mp4">
-            Ваш браузер не поддерживает видео.
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title" data-aos="fade-down">Посвящение в Школу 21</h1>
-            <p class="hero-subtitle" data-aos="fade-down" data-aos-delay="200">Самая ожидаемая тусовка года!</p>
-            <p class="hero-date" data-aos="fade-down" data-aos-delay="400">25 октября 2025</p>
-            <p class="hero-location" data-aos="fade-down" data-aos-delay="600">Казань, "Фабрика Алафузова"</p>
-            <div class="cta-buttons">
-                <a href="https://t.me/kcaraway_bot" class="btn btn-primary" data-aos="zoom-in" data-aos-delay="800">Купить билеты</a>
-                <a href="#about" class="btn btn-secondary" data-aos="zoom-in" data-aos-delay="1000">Узнать подробности</a>
-            </div>
+  <div class="page">
+    <!-- Шапка -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="logo">
+          <a href="./index.html" class="logo-link">
+            <img src="./assets/img/logo.png" alt="Peer To Peer" class="logo-image" />
+          </a>
+          <div class="logo-text">
+            <div class="logo-title">Peer To Peer</div>
+            <div class="logo-subtitle">Зимняя встреча 2025</div>
+          </div>
         </div>
-    </section>
+        <nav class="nav" aria-label="Основная навигация">
+          <a href="#hero">Главная</a>
+          <a href="#countdown">Таймер</a>
+          <a href="#about">О встрече</a>
+          <a href="#atmosphere">Атмосфера</a>
+          <a href="#gallery">Галерея</a>
+          <a href="#details">Детали</a>
+          <a href="#cta">Присоединиться</a>
+        </nav>
+        <button class="btn btn-primary" data-scroll-to="#cta">
+          Присоединиться
+        </button>
+      </div>
+    </header>
 
-    <!-- О мероприятии -->
-    <section id="about" class="section">
+    <main>
+      <!-- HERO -->
+      <section class="section section-hero" id="hero">
+        <div class="container hero-inner">
+          <div class="hero-content">
+            <p class="hero-kicker">✨ Зимняя встреча от Peer To Peer ✨</p>
+            <h1 class="hero-title">Волшебство зимней встречи</h1>
+            <p class="hero-subtitle">
+              Peer To Peer приглашает в праздничную сказку — 26 декабря 2025 года, вход с 18:00
+            </p>
+            <div class="hero-cta">
+              <button class="btn btn-primary" data-scroll-to="#cta">
+                Присоединиться
+              </button>
+              <button class="btn btn-outline" data-scroll-to="#about">
+                Узнать подробности
+              </button>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-ornament">
+              <div class="ornament-glow">
+                <img src="./assets/img/logo.png" alt="Зимнее украшение" class="hero-ornament-image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ТАЙМЕР -->
+      <section class="section section-countdown" id="countdown">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">О мероприятии</h2>
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <p>Приветствуем новых участников Школы 21! Мы рады пригласить вас на нашу традиционную вечеринку-посвящение, где вы сможете познакомиться с сокурсниками и погрузиться в уникальную атмосферу нашего сообщества.</p>
-                    <p>Вас ждут захватывающие активности, конкурсы с призами, живая музыка и, конечно же, море общения с такими же увлеченными программированием людьми, как и вы.</p>
-                    <p>Это отличная возможность отдохнуть после интенсивного пула и зарядиться энергией для новых свершений в мире IT!</p>
-                </div>
-                <div data-aos="fade-left">
-                    <img src="assets/images/DSC00771.JPG" alt="Мероприятие Школа 21" class="about-image">
-                </div>
+          <h2 class="section-title">До встречи в сказке осталось</h2>
+          <div class="countdown-grid">
+            <div class="countdown-unit">
+              <div class="countdown-value" id="days">00</div>
+              <div class="countdown-label">Дни</div>
             </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="hours">00</div>
+              <div class="countdown-label">Часы</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="minutes">00</div>
+              <div class="countdown-label">Минуты</div>
+            </div>
+            <div class="countdown-unit">
+              <div class="countdown-value" id="seconds">00</div>
+              <div class="countdown-label">Секунды</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Детали -->
-    <section id="details" class="section">
+      <!-- О встрече -->
+      <section class="section section-about" id="about">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Детали мероприятия</h2>
-            <div class="details-grid">
-                <div class="detail-card" data-aos="flip-left">
-                    <div class="detail-icon">
-                        <i class="far fa-calendar-alt"></i>
-                    </div>
-                    <h3 class="detail-title">Дата и время</h3>
-                    <p>25 октября 2025<br>Начало в 18:00</p>
-                </div>
-                <div class="detail-card" data-aos="flip-left" data-aos-delay="200">
-                    <div class="detail-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3 class="detail-title">Место</h3>
-                    <p>Казань, Фабрика "Алафузова"<br>ул. Гладилова, д. 55А</p>
-                </div>
-                <div class="detail-card" data-aos="flip-left" data-aos-delay="400">
-                    <div class="detail-icon">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h3 class="detail-title">Дресс-код</h3>
-                    <p>IT-Casual<br>Комфортная одежда с элементами хоррора. Приз за лучший костюм!</p>
-                </div>
-                <div class="detail-card" data-aos="flip-left" data-aos-delay="600">
-                    <div class="detail-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="detail-title">Участники</h3>
-                    <p>Новые студенты Школы 21,<br>команда АДМ и действующие участники Школы 21</p>
-                </div>
-            </div>
+          <h2 class="section-title">О зимней встрече</h2>
+          <p class="section-text">
+            Зимняя встреча Peer To Peer — это тёплый вечер в компании людей, которые разделяют схожие ценности и интересы. Вас ждут лёгкие новогодние активности, живое общение, обмен опытом и уютная атмосфера, в которой хочется задержаться подольше.
+          </p>
+          <p class="section-text">
+            Формат мероприятия — неформальный: немного вдохновляющего контента, немного игр и много искренних разговоров за зимними напитками и угощениями. Это повод подвести итоги года, наметить планы на будущее и провести время с теми, кто на одной волне.
+          </p>
         </div>
-    </section>
+      </section>
 
-    <!-- Таймер -->
-    <section id="countdown" class="section">
+      <!-- АТМОСФЕРА -->
+      <section class="section section-atmosphere" id="atmosphere">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">До мероприятия осталось</h2>
-            <div class="countdown-container">
-                <div class="countdown-item" data-aos="zoom-in">
-                    <span id="days" class="countdown-value">00</span>
-                    <span class="countdown-label">Дней</span>
-                </div>
-                <div class="countdown-item" data-aos="zoom-in" data-aos-delay="100">
-                    <span id="hours" class="countdown-value">00</span>
-                    <span class="countdown-label">Часов</span>
-                </div>
-                <div class="countdown-item" data-aos="zoom-in" data-aos-delay="200">
-                    <span id="minutes" class="countdown-value">00</span>
-                    <span class="countdown-label">Минут</span>
-                </div>
-                <div class="countdown-item" data-aos="zoom-in" data-aos-delay="300">
-                    <span id="seconds" class="countdown-value">00</span>
-                    <span class="countdown-label">Секунд</span>
-                </div>
+          <h2 class="section-title">Погрузитесь в атмосферу праздника</h2>
+          <div class="atmosphere-grid">
+            <div class="atmosphere-card">
+              <div class="atmosphere-icon">🤝</div>
+              <div class="atmosphere-title">Сообщество</div>
+              <div class="atmosphere-text">Встреча единомышленников в уютной атмосфере зимнего праздника</div>
             </div>
+            <div class="atmosphere-card">
+              <div class="atmosphere-icon">💡</div>
+              <div class="atmosphere-title">Знания</div>
+              <div class="atmosphere-text">Обмен опытом и вдохновляющие беседы в неформальной обстановке</div>
+            </div>
+            <div class="atmosphere-card">
+              <div class="atmosphere-icon">🎉</div>
+              <div class="atmosphere-title">Праздник</div>
+              <div class="atmosphere-text">Незабываемая вечеринка в зимнем стиле с теплой атмосферой</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Галерея -->
-    <section id="gallery" class="section">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Посмотри, как было раньше</h2>
-        <div class="gallery-grid">
-            <a href="https://drive.google.com/drive/folders/1qFaqKfrMNHXHoFjXIeJ-e3GotZ6afUmo?usp=share_link" class="gallery-item" target="_blank" data-aos="fade-up">
-                <img src="assets/images/2022.jpg" alt="Посвят" class="gallery-img">
-                <div class="gallery-overlay">
-                    <p>Осень 2022</p>
-                </div>
+      <!-- ГАЛЕРЕЯ -->
+      <section class="section section-gallery" id="gallery">
+        <div class="container">
+          <h2 class="section-title">Наши прошлые встречи</h2>
+          <p class="section-subtitle">Посмотрите, как это было на предыдущих мероприятиях Peer To Peer</p>
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <div class="gallery-image-container">
+                <img src="./assets/photo/photo_1.jpg" alt="P2P Event 1" class="gallery-image-real" data-image="1">
+              </div>
+              <div class="gallery-caption">P2P Event</div>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-image-container">
+                <img src="./assets/photo/photo_2.jpg" alt="P2P Event 2" class="gallery-image-real" data-image="2">
+              </div>
+              <div class="gallery-caption">P2P Event</div>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-image-container">
+                <img src="./assets/photo/photo_3.jpg" alt="P2P Event 3" class="gallery-image-real" data-image="3">
+              </div>
+              <div class="gallery-caption">P2P Event</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ДЕТАЛИ -->
+      <section class="section section-details" id="details">
+        <div class="container">
+          <h2 class="section-title">Детали мероприятия</h2>
+          <div class="details-grid">
+            <div class="detail-card">
+              <div class="detail-icon">📅</div>
+              <div class="detail-label">Дата</div>
+              <div class="detail-value">26 декабря 2025 года</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-icon">⏰</div>
+              <div class="detail-label">Время</div>
+              <div class="detail-value">Вход с 18:00</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-icon">📍</div>
+              <div class="detail-label">Место</div>
+              <div class="detail-value">Coming soon... Kzn!</div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-icon">🧣</div>
+              <div class="detail-label">Dress code</div>
+              <div class="detail-value">Smart casual + зимний акцент</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ОРГАНИЗАТОР -->
+      <section class="section section-org" id="org">
+        <div class="container org-inner">
+          <div class="org-text">
+            <h2 class="section-title">Организатор — Peer To Peer</h2>
+            <p class="section-text">
+              Peer To Peer — это сообщество людей, которым важны живое общение, обмен опытом и поддержка единомышленников. Мы создаём пространство, где можно безопасно делиться идеями, задавать вопросы и находить новые точки роста.
+            </p>
+            <p class="section-text">
+              Зимняя встреча — это продолжение этой философии в формате уютного сезона: меньше формальностей, больше человеческого общения и искреннего праздника.
+            </p>
+          </div>
+          <div class="org-card" aria-hidden="true">
+            <div class="org-logo">
+              <img src="./assets/img/logo.png" alt="Peer To Peer" class="org-logo-image">
+            </div>
+            <div class="org-note">Сообщество людей, которые поддерживают друг друга</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section section-cta" id="cta">
+        <div class="container cta-inner">
+          <h2 class="section-title">Присоединяйтесь скорее!</h2>
+          <p class="section-subtitle">Станьте частью нашего зимнего волшебства</p>
+          <div class="cta-action">
+            <a href="https://t.me/+WC-FwkpWqgJkOTIy" class="btn btn-primary btn-large btn-telegram" target="_blank">
+              <span class="btn-icon">📱</span>
+              Присоединиться в Telegram
             </a>
-            
-            <a href="https://disk.yandex.ru/d/E6RqOUyfTA5ICw" class="gallery-item" target="_blank" data-aos="fade-up" data-aos-delay="100">
-                <img src="assets/images/2024.jpg" alt="Посвят" class="gallery-img">
-                <div class="gallery-overlay">
-                    <p>Весна 2024</p>
-                </div>
-            </a>
-           
-            <a href="https://disk.yandex.ru/d/D-ag7JPk5bOp_w" class="gallery-item" target="_blank" data-aos="fade-up" data-aos-delay="200">
-                <img src="assets/images/DSC00730.JPG" alt="Посвят" class="gallery-img">
-                <div class="gallery-overlay">
-                    <p>Весна 2025</p>
-                </div>
-            </a>
+          </div>
         </div>
-    </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- Контакты -->
-    <section id="contacts" class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Свяжитесь с нами</h2>
-            <p data-aos="fade-up" data-aos-delay="200">Есть вопросы? Скорее пиши нам в чат:)!</p>
-            <div class="social-links">
-                <a href="https://t.me/+WC-FwkpWqgJkOTIy" class="social-link" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fab fa-telegram"></i>
-                </a>
-            </div>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-copy">© Peer To Peer, 2025 · Волшебная зимняя встреча</div>
+        <div class="footer-social">
+          <a href="https://t.me/+WC-FwkpWqgJkOTIy" aria-label="Telegram">TG</a>
         </div>
-    </section>
-
-    <!-- Футер -->
-    <footer>
-        <div class="container">
-            <p>© 2025 Peer2Peer Agency. Все права защищены.</p>
-        </div>
+      </div>
     </footer>
+  </div>
 
-    <!-- Подключение библиотек -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    
-    <!-- Подключение основного скрипта -->
-    <script src="js/script.js"></script>
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <div class="lightbox-image" id="lightboxImage"></div>
+    </div>
+  </div>
+
+  <!-- Скрипты -->
+  <script src="main.js"></script>
 </body>
 </html>
