@@ -41,7 +41,7 @@ document.addEventListener("click", (e) => {
 
 // Таймер обратного отсчёта
 (function () {
-  const targetDate = new Date("2025-12-26T18:00:00+03:00").getTime();
+  const targetDate = new Date("2025-12-26T19:00:00+03:00").getTime();
 
   function pad(n) {
     return String(n).padStart(2, "0");
