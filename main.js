@@ -435,7 +435,6 @@ document.addEventListener("click", (e) => {
     observer.observe(el);
   });
 })();
-<<<<<<< HEAD
 
 // Плавное появление карточек товаров с задержкой
 (function () {
@@ -460,5 +459,3 @@ document.addEventListener("click", (e) => {
     observer.observe(el);
   });
 })();
-=======
->>>>>>> 7b200dd53f5acb8cd2165c896331764316d91bfa
