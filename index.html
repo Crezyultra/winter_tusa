@@ -2,21 +2,31 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Peer To Peer — Зимняя встреча 2025</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Зимняя встреча от Peer To Peer — праздничное мероприятие 26 декабря 2025, вход с 19:00. Присоединяйтесь к волшебству зимней встречи!" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" href="./favicon.ico">
+  <meta name="theme-color" content="#06121f">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="./assets/img/logo.png" as="image" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <!-- Шрифты -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  
   <!-- Стили -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Фон снежинок (поверх всего) -->
+  <!-- Фон снежинок -->
   <canvas id="snow-canvas" aria-hidden="true"></canvas>
 
-  <!-- Декоративные фигуры (олени, снеговики) -->
+  <!-- Декоративные фигуры -->
   <div class="decorations" aria-hidden="true">
     <div class="reindeer reindeer-1">🦌</div>
     <div class="reindeer reindeer-2">🎄</div>
@@ -25,10 +35,12 @@
 
   <!-- Прелоадер -->
   <div class="preloader" id="preloader">
-    <div class="preloader-snowflake">
-      <img src="./assets/img/preloader.png" alt="Snowflake" class="preloader-snowflake-image">
+    <div class="preloader-content">
+      <div class="preloader-snowflake">
+        <img src="./assets/img/preloader.png" alt="Snowflake" class="preloader-snowflake-image">
+      </div>
+      <div class="preloader-text">Загружаем зимнюю сказку...</div>
     </div>
-    <div class="preloader-text">Загружаем зимнюю сказку...</div>
   </div>
 
   <div class="page">
@@ -37,7 +49,7 @@
       <div class="container header-inner">
         <div class="logo">
           <a href="./index.html" class="logo-link">
-            <img src="./assets/img/logo.png" alt="Peer To Peer" class="logo-image" />
+            <img src="./assets/img/logo.png" alt="Peer To Peer" class="logo-image" width="34" height="34">
           </a>
           <div class="logo-text">
             <div class="logo-title">Peer To Peer</div>
@@ -81,7 +93,7 @@
           <div class="hero-visual" aria-hidden="true">
             <div class="hero-ornament">
               <div class="ornament-glow">
-                <img src="./assets/img/logo.png" alt="Зимнее украшение" class="hero-ornament-image">
+                <img src="./assets/img/logo.png" alt="Зимнее украшение" class="hero-ornament-image" width="120" height="120">
               </div>
             </div>
           </div>
@@ -158,19 +170,19 @@
           <div class="gallery-grid">
             <div class="gallery-item">
               <div class="gallery-image-container">
-                <img src="./assets/photo/photo_1.jpg" alt="P2P Event 1" class="gallery-image-real" data-image="1">
+                <img src="./assets/photo/photo_1.jpg" alt="P2P Event 1" class="gallery-image-real" data-image="1" loading="lazy" width="300" height="180">
               </div>
               <div class="gallery-caption">P2P Event</div>
             </div>
             <div class="gallery-item">
               <div class="gallery-image-container">
-                <img src="./assets/photo/photo_2.jpg" alt="P2P Event 2" class="gallery-image-real" data-image="2">
+                <img src="./assets/photo/photo_2.jpg" alt="P2P Event 2" class="gallery-image-real" data-image="2" loading="lazy" width="300" height="180">
               </div>
               <div class="gallery-caption">P2P Event</div>
             </div>
             <div class="gallery-item">
               <div class="gallery-image-container">
-                <img src="./assets/photo/photo_3.jpg" alt="P2P Event 3" class="gallery-image-real" data-image="3">
+                <img src="./assets/photo/photo_3.jpg" alt="P2P Event 3" class="gallery-image-real" data-image="3" loading="lazy" width="300" height="180">
               </div>
               <div class="gallery-caption">P2P Event</div>
             </div>
@@ -185,10 +197,10 @@
           <p class="section-subtitle">Ограниченная зимняя коллекция 2025</p>
           
           <div class="products-grid">
-            <!-- Товар 1 (3 фото) -->
+            <!-- Товар 1 (2 фото) -->
             <div class="product-card" data-product="1" data-images='["assets/products/tshirt1-2.jpg","assets/products/tshirt1-3.jpg"]'>
               <div class="product-thumbnail">
-                <img src="assets/products/thumb1.jpg" alt="Футболка Winter Edition 2025" loading="lazy">
+                <img src="assets/products/thumb1.jpg" alt="Футболка Winter Edition 2025" loading="lazy" width="280" height="200">
                 <div class="product-badge">New</div>
               </div>
               <div class="product-info">
@@ -197,10 +209,10 @@
               </div>
             </div>
             
-            <!-- Товары 2-6 (по 2 фото) -->
+            <!-- Товар 2 -->
             <div class="product-card" data-product="2" data-images='["assets/products/thumb2.jpg","assets/products/tshirt2-2.jpg"]'>
               <div class="product-thumbnail">
-                <img src="assets/products/thumb2.jpg" alt="Футболка Frost Blue" loading="lazy">
+                <img src="assets/products/thumb2.jpg" alt="Футболка Frost Blue" loading="lazy" width="280" height="200">
                 <div class="product-badge">New</div>
               </div>
               <div class="product-info">
@@ -209,9 +221,10 @@
               </div>
             </div>
             
+            <!-- Товар 3 -->
             <div class="product-card" data-product="3" data-images='["assets/products/thumb3.jpg","assets/products/tshirt3-2.jpg"]'>
               <div class="product-thumbnail">
-                <img src="assets/products/thumb3.jpg" alt="Футболка Snow White" loading="lazy">
+                <img src="assets/products/thumb3.jpg" alt="Футболка Snow White" loading="lazy" width="280" height="200">
                 <div class="product-badge">New</div>
               </div>
               <div class="product-info">
@@ -220,9 +233,10 @@
               </div>
             </div>
             
+            <!-- Товар 4 -->
             <div class="product-card" data-product="4" data-images='["assets/products/thumb4.jpg","assets/products/tshirt4-2.jpg"]'>
               <div class="product-thumbnail">
-                <img src="assets/products/thumb4.jpg" alt="Футболка Arctic Grey" loading="lazy">
+                <img src="assets/products/thumb4.jpg" alt="Футболка Arctic Grey" loading="lazy" width="280" height="200">
                 <div class="product-badge">New</div>
               </div>
               <div class="product-info">
@@ -231,9 +245,10 @@
               </div>
             </div>
             
+            <!-- Товар 5 -->
             <div class="product-card" data-product="5" data-images='["assets/products/thumb5.jpg","assets/products/tshirt5-2.jpg"]'>
               <div class="product-thumbnail">
-                <img src="assets/products/thumb5.jpg" alt="Футболка Northern Lights" loading="lazy">
+                <img src="assets/products/thumb5.jpg" alt="Футболка Northern Lights" loading="lazy" width="280" height="200">
                 <div class="product-badge">New</div>
               </div>
               <div class="product-info">
@@ -242,9 +257,10 @@
               </div>
             </div>
             
+            <!-- Товар 6 -->
             <div class="product-card" data-product="6" data-images='["assets/products/thumb6.jpg","assets/products/tshirt6-2.jpg"]'>
               <div class="product-thumbnail">
-                <img src="assets/products/thumb6.jpg" alt="Футболка Iceberg" loading="lazy">
+                <img src="assets/products/thumb6.jpg" alt="Футболка Iceberg" loading="lazy" width="280" height="200">
                 <div class="product-badge">New</div>
               </div>
               <div class="product-info">
@@ -299,7 +315,7 @@
           </div>
           <div class="org-card" aria-hidden="true">
             <div class="org-logo">
-              <img src="./assets/img/logo.png" alt="Peer To Peer" class="org-logo-image">
+              <img src="./assets/img/logo.png" alt="Peer To Peer" class="org-logo-image" width="45" height="45">
             </div>
             <div class="org-note">Сообщество людей, которые поддерживают друг друга</div>
           </div>
@@ -312,7 +328,7 @@
           <h2 class="section-title">Присоединяйтесь скорее!</h2>
           <p class="section-subtitle">Станьте частью нашего зимнего волшебства</p>
           <div class="cta-action">
-            <a href="https://t.me/+WC-FwkpWqgJkOTIy" class="btn btn-primary btn-large btn-telegram" target="_blank">
+            <a href="https://t.me/+WC-FwkpWqgJkOTIy" class="btn btn-primary btn-large btn-telegram" target="_blank" rel="noopener noreferrer">
               <span class="btn-icon">📱</span>
               Присоединиться в Telegram
             </a>
@@ -326,29 +342,29 @@
       <div class="container footer-inner">
         <div class="footer-copy">© Peer To Peer, 2025 · Волшебная зимняя встреча</div>
         <div class="footer-social">
-          <a href="https://t.me/+WC-FwkpWqgJkOTIy" aria-label="Telegram">TG</a>
+          <a href="https://t.me/+WC-FwkpWqgJkOTIy" aria-label="Telegram" target="_blank" rel="noopener noreferrer">TG</a>
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- Lightbox Modal для галереи -->
+  <!-- Lightbox для галереи -->
   <div class="lightbox" id="lightbox">
     <div class="lightbox-overlay"></div>
     <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">&times;</button>
       <div class="lightbox-image" id="lightboxImage"></div>
     </div>
   </div>
 
-  <!-- Модальное окно для галереи товаров -->
-  <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-label="Галерея товара">
+  <!-- Модальное окно для товаров -->
+  <div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-label="Галерея товара" aria-hidden="true">
     <div class="product-modal-overlay" tabindex="-1"></div>
     <div class="product-modal-content">
       <button class="product-modal-close" aria-label="Закрыть окно">&times;</button>
       
       <div class="product-modal-slides">
-        <!-- Слайды будут вставляться динамически -->
+        <!-- Слайды будут добавляться динамически -->
       </div>
       
       <div class="product-modal-controls">
@@ -359,7 +375,7 @@
         </button>
         
         <div class="product-modal-counter">
-          <span class="current-slide">1</span>/<span class="total-slides">3</span>
+          <span class="current-slide">1</span>/<span class="total-slides">2</span>
         </div>
         
         <button class="product-modal-next" aria-label="Следующее изображение">
@@ -372,6 +388,6 @@
   </div>
 
   <!-- Скрипты -->
-  <script src="main.js"></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
