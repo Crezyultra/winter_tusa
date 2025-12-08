@@ -501,6 +501,7 @@ body.loading {
   }
 }
 
+/* Новые стили для hero-kicker с эмодзи по бокам */
 .hero-kicker {
   font-size: 12px;
   letter-spacing: 0.25em;
@@ -508,11 +509,58 @@ body.loading {
   color: var(--accent-gold);
   margin-bottom: 16px;
   font-weight: 600;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 4px 12px;
   background: rgba(212, 175, 55, 0.1);
   border-radius: var(--radius-pill);
   border: 1px solid rgba(212, 175, 55, 0.3);
+  text-align: center;
+  gap: 8px;
+}
+
+.hero-kicker-emoji {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-kicker-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.hero-kicker-line1,
+.hero-kicker-line2 {
+  line-height: 1.2;
+}
+
+/* Для десктопа - текст в одну строку */
+@media (min-width: 769px) {
+  .hero-kicker-text {
+    flex-direction: row;
+    gap: 4px;
+  }
+  
+  .hero-kicker-line2::before {
+    content: " ";
+  }
+}
+
+/* Для мобильных - текст в две строки */
+@media (max-width: 768px) {
+  .hero-kicker {
+    padding: 6px 12px;
+    gap: 6px;
+  }
+  
+  .hero-kicker-text {
+    flex-direction: column;
+  }
 }
 
 .hero-title {
