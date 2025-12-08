@@ -7,13 +7,38 @@
 (function initPreloader() {
   const preloader = document.getElementById('preloader');
   const page = document.querySelector('.page');
+  const MIN_DISPLAY_TIME = 1000; // Минимум 1 секунда показа прелоадера
+  let startTime = Date.now();
   let isHidden = false;
+  let hideTimeout = null;
   
-  // Функция скрытия прелоадера
+  // Функция скрытия прелоадера с гарантией минимального времени
   function hidePreloader() {
     if (isHidden) return;
     
+    // Вычисляем, сколько времени прошло с момента старта
+    const elapsedTime = Date.now() - startTime;
+    const timeLeft = Math.max(0, MIN_DISPLAY_TIME - elapsedTime);
+    
+    console.log(`Прошло времени: ${elapsedTime}мс, осталось ждать: ${timeLeft}мс`);
+    
+    // Если минимальное время уже прошло, скрываем сразу
+    if (timeLeft <= 0) {
+      performHide();
+      return;
+    }
+    
+    // Иначе ждем оставшееся время
+    if (hideTimeout) clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(performHide, timeLeft);
+  }
+  
+  // Функция непосредственного скрытия прелоадера
+  function performHide() {
+    if (isHidden) return;
+    
     isHidden = true;
+    console.log('Скрываем прелоадер после минимальной задержки');
     
     // Добавляем класс для анимации исчезновения
     preloader.classList.add('hidden');
@@ -33,37 +58,39 @@
     }, 500);
   }
   
+  // Начинаем отсчет времени с момента запуска скрипта
+  startTime = Date.now();
+  console.log('Прелоадер запущен в:', new Date(startTime).toISOString());
+  
   // Событие когда DOM полностью загружен
   document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded - страница загружена');
     
-    // Даем минимум 1.5 секунды на показ прелоадера
-    setTimeout(() => {
-      hidePreloader();
-    }, 1500);
+    // Не скрываем сразу, а используем hidePreloader который учтет минимальное время
+    hidePreloader();
   });
   
   // Событие когда все ресурсы загружены
   window.addEventListener('load', () => {
     console.log('window.load - все ресурсы загружены');
     
-    // Если DOM уже загружен, сразу скрываем прелоадер
-    if (document.readyState === 'complete') {
-      hidePreloader();
-    }
+    // Не скрываем сразу, а используем hidePreloader который учтет минимальное время
+    hidePreloader();
   });
   
-  // Безопасный таймаут - всегда скрываем через 4 секунды
+  // Безопасный таймаут - всегда скрываем через 4 секунды, даже если что-то пошло не так
   setTimeout(() => {
     if (!isHidden) {
-      console.log('Safety timeout - скрываем прелоадер');
-      hidePreloader();
+      console.log('Safety timeout - скрываем прелоадер через 4 секунды');
+      performHide();
     }
   }, 4000);
   
-  // Проверка если страница уже загружена
+  // Проверка если страница уже загружена (например, при кэшировании)
   if (document.readyState === 'complete') {
-    setTimeout(hidePreloader, 500);
+    console.log('Страница уже загружена (readyState = complete)');
+    // Даем минимум 1 секунду на показ прелоадера
+    setTimeout(hidePreloader, 1000);
   }
 })();
 
@@ -278,83 +305,6 @@ const SCROLL_OFFSET = 80; // Отступ для скролла к якорям
   });
 })();
 
-// ==================== LIGHTBOX ДЛЯ ГАЛЕРЕИ ====================
-(function initLightbox() {
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImage = document.getElementById('lightboxImage');
-  const lightboxClose = document.getElementById('lightboxClose');
-  const lightboxOverlay = document.querySelector('.lightbox-overlay');
-  const galleryImages = document.querySelectorAll('.gallery-image-real');
-  
-  // Проверяем, есть ли элементы галереи
-  if (!lightbox || galleryImages.length === 0) return;
-  
-  // Градиенты для разных изображений
-  const gradients = {
-    1: 'linear-gradient(135deg, rgba(168, 216, 234, 0.9), rgba(212, 175, 55, 0.8))',
-    2: 'linear-gradient(135deg, rgba(255, 150, 100, 0.9), rgba(100, 200, 255, 0.8))',
-    3: 'linear-gradient(135deg, rgba(200, 150, 100, 0.9), rgba(100, 150, 150, 0.8))'
-  };
-  
-  // Открытие lightbox
-  function openLightbox(imageNumber) {
-    const gradient = gradients[imageNumber] || gradients[1];
-    lightboxImage.style.background = gradient;
-    
-    // Устанавливаем реальное изображение
-    const imgSrc = document.querySelector(`.gallery-image-real[data-image="${imageNumber}"]`).src;
-    lightboxImage.style.backgroundImage = `url("${imgSrc}")`;
-    lightboxImage.style.backgroundSize = 'contain';
-    lightboxImage.style.backgroundRepeat = 'no-repeat';
-    lightboxImage.style.backgroundPosition = 'center';
-    
-    lightbox.classList.add('active');
-    lightbox.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    
-    // Фокусируем на кнопке закрытия
-    setTimeout(() => lightboxClose.focus(), 100);
-  }
-  
-  // Закрытие lightbox
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    lightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-  
-  // Обработчики кликов на изображения
-  galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-      const imageNumber = img.getAttribute('data-image');
-      openLightbox(imageNumber);
-    });
-    
-    // Для мобильных устройств
-    img.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      const imageNumber = img.getAttribute('data-image');
-      openLightbox(imageNumber);
-    }, { passive: false });
-  });
-  
-  // Обработчики закрытия
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightboxOverlay.addEventListener('click', closeLightbox);
-  
-  // Закрытие по клавише Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      closeLightbox();
-    }
-  });
-  
-  // Предотвращаем закрытие при клике на само изображение
-  lightboxImage.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-})();
-
 // ==================== ГАЛЕРЕЯ ТОВАРОВ ====================
 (function initProductGallery() {
   const modal = document.getElementById('productModal');
@@ -378,6 +328,7 @@ const SCROLL_OFFSET = 80; // Отступ для скролла к якорям
   let imagesData = [];
   let touchStartX = 0;
   let touchEndX = 0;
+  let lastFocusedElement = null;
   
   // Создание слайда
   function createSlide(imgSrc, index) {
@@ -396,6 +347,9 @@ const SCROLL_OFFSET = 80; // Отступ для скролла к якорям
   
   // Открытие модального окна
   function openModal(images, productId) {
+    // Сохраняем элемент, который был в фокусе
+    lastFocusedElement = document.activeElement;
+    
     imagesData = images;
     totalSlides = images.length;
     currentSlide = 0;
@@ -446,11 +400,24 @@ const SCROLL_OFFSET = 80; // Отступ для скролла к якорям
     updateSlides();
   }
   
-  // Закрытие модального окна
+  // Закрытие модального окна - ИСПРАВЛЕННАЯ ВЕРСИЯ
   function closeModal() {
+    // Убираем фокус с любого элемента внутри модалки, который может быть в фокусе
+    const focusedElement = modal.querySelector(':focus');
+    if (focusedElement) {
+      focusedElement.blur();
+    }
+    
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    
+    // Возвращаем фокус на элемент, который открыл модалку
+    if (lastFocusedElement) {
+      setTimeout(() => {
+        lastFocusedElement.focus();
+      }, 10);
+    }
     
     // Очищаем данные
     slides = [];
@@ -549,12 +516,33 @@ const SCROLL_OFFSET = 80; // Отступ для скролла к якорям
       }
     }, 250);
   });
+  
+  // Fix for Safari - убеждаемся, что модалка правильно скрыта при загрузке
+  window.addEventListener('load', () => {
+  modal.setAttribute('aria-hidden', 'true');
+  // Убираем установку display: none, так как модалка уже скрыта через CSS
+});
 })();
 
 // ==================== АНИМАЦИЯ ПРИ СКРОЛЛЕ ====================
 (function initScrollAnimations() {
   // Проверяем поддержку Intersection Observer
   if (!('IntersectionObserver' in window)) {
+    // Fallback для старых браузеров
+    const animateElements = () => {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const isVisible = rect.top <= window.innerHeight * 0.8;
+        if (isVisible) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', animateElements);
+    window.addEventListener('load', animateElements);
+    animateElements();
     return;
   }
   
